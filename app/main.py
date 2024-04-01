@@ -7,7 +7,6 @@ import yaml
 import time 
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)    
 
 
 def load_and_validate_api_key():
@@ -38,11 +37,11 @@ def main() -> None:
         config = yaml.safe_load(config["GL_CAMERAS"])
         
     # grabbers = FrameGrabber.create_grabbers(config)
-    logger.info(f"Camera Config: {config}")
+    logging.info(f"Camera Config: {config}")
     
     while True:
         current_time = time.time()
-        logger.info(f"<{current_time}> Running door-lock detection...")
+        logging.info(f"<{current_time}> Running door-lock detection...")
         
         time.sleep(5)   
         
