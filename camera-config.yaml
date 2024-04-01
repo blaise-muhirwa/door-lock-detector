@@ -2,7 +2,7 @@ GL_CAMERAS: |
   - name: Door Lock Camera
     input_type: rtsp
     id: 
-      rtsp_url: rtsp://admin:VvsVisGyy3bznLJB@10.44.2.95:554
+      rtsp_url: ""
     options:
       crop:
         relative:

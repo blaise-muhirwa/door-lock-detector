@@ -46,8 +46,6 @@ def get_grabber() -> None:
 
 def main():
     load_and_validate_api_key()
-    # os.environ["GROUNDLIGHT_API_TOKEN"] = "api_2eVbf3SRYOLt66D98190muD805c_xzUNxZpfkDmtkQGydqBr1ggjwjGT4G8wp9"
-    # os.environ["GROUNDLIGHT_ENDPOINT"] = "https://api.dev.groundlight.ai"
     # gl_sdk = Groundlight()
 
     # detector = gl_sdk.get_or_create_detector(
