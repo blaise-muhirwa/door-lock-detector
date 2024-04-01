@@ -6,6 +6,9 @@ from framegrab import FrameGrabber
 import yaml 
 import time 
 
+logger = logging.getLogger(__name__)    
+
+
 def load_and_validate_api_key():
     """
     Loads the contents of the .env file into the environment,
@@ -34,16 +37,15 @@ def main() -> None:
         config = yaml.safe_load(config["GL_CAMERAS"])
         
     # grabbers = FrameGrabber.create_grabbers(config)
-    logging.info(f"Camera Config: {config}")
+    logger.info(f"Camera Config: {config}")
     
     while True:
         current_time = time.time()
-        logging.info(f"<{current_time}> Running door-lock detection...")
+        logger.info(f"<{current_time}> Running door-lock detection...")
         
         time.sleep(5)   
         
 
 
 if __name__=="__main__":
-    logging.basicConfig(level=logging.INFO)
     main()
