@@ -46,22 +46,22 @@ def get_grabber() -> None:
 
 def main():
     load_and_validate_api_key()
-    os.environ["GROUNDLIGHT_API_TOKEN"] = "api_2eVbf3SRYOLt66D98190muD805c_xzUNxZpfkDmtkQGydqBr1ggjwjGT4G8wp9"
-    os.environ["GROUNDLIGHT_ENDPOINT"] = "https://api.dev.groundlight.ai"
-    gl_sdk = Groundlight()
+    # os.environ["GROUNDLIGHT_API_TOKEN"] = "api_2eVbf3SRYOLt66D98190muD805c_xzUNxZpfkDmtkQGydqBr1ggjwjGT4G8wp9"
+    # os.environ["GROUNDLIGHT_ENDPOINT"] = "https://api.dev.groundlight.ai"
+    # gl_sdk = Groundlight()
 
-    detector = gl_sdk.get_or_create_detector(
-        name="Door Lock Detector", query="Is the door locked?", confidence_threshold=0.8
-    )
+    # detector = gl_sdk.get_or_create_detector(
+    #     name="Door Lock Detector", query="Is the door locked?", confidence_threshold=0.8
+    # )
 
     while True:
         grabber = get_grabber()
         image = grabber.grab()
 
-        image_query = gl_sdk.submit_image_query(detector=detector, image=image, wait=10)
+        # image_query = gl_sdk.submit_image_query(detector=detector, image=image, wait=0)
 
-        logging.info(f"<door-lock-detector> IQresult: {image_query}")
-        time.sleep(5)
+        logging.info(f"<door-lock-detector> sending an IQ to Groundlight")
+        time.sleep(0.5)
 
 
 
