@@ -6,6 +6,7 @@ from framegrab import FrameGrabber
 import yaml 
 import time 
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)    
 
 
