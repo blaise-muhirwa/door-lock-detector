@@ -1,10 +1,11 @@
 import os
-import logging 
+import logging
 
 from dotenv import load_dotenv
 from framegrab import FrameGrabber
-import yaml 
-import time 
+import yaml
+import time
+from groundlight import Groundlight
 
 logging.basicConfig(level=logging.INFO)
 
@@ -27,25 +28,40 @@ def load_and_validate_api_key():
         )
 
 
-def main() -> None:
+def get_grabber() -> None:
     """
     Uses framegrab to set up camera
     """
-    
+
     with open("camera-config.yaml", "r") as config_file:
         config = yaml.safe_load(config_file)
         config = yaml.safe_load(config["GL_CAMERAS"])
-        
-    # grabbers = FrameGrabber.create_grabbers(config)
-    logging.info(f"Camera Config: {config}")
-    
+
+    grabbers = FrameGrabber.create_grabbers(config)
+
+    assert len(grabbers) == 1
+
+    return grabbers["Door Lock Camera"]
+
+
+def main():
+    load_and_validate_api_key()
+    gl_sdk = Groundlight()
+
+    detector = gl_sdk.get_or_create_detector(
+        name="Door Lock Detector", query="Is the door locked?", confidence_threshold=0.8
+    )
+
     while True:
-        current_time = time.time()
-        logging.info(f"<{current_time}> Running door-lock detection...")
-        
-        time.sleep(5)   
-        
+        grabber = get_grabber()
+        image = grabber.grab()
+
+        image_query = gl_sdk.submit_image_query(detector=detector, image=image, wait=10)
+
+        logging.info(f"<door-lock-detector> IQresult: {image_query}")
+        time.sleep(5)
 
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
