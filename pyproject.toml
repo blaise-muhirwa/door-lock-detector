@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "door-lock-detector"
+version = "0.1.0"
+description = "An application using Groundlight to detect when a door is locked"
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+groundlight = "^0.14.0"
+framegrab = "^0.5.0"
+black = "^24.3.0"
+python-dotenv = "^1.0.1"
+balena-sdk = "^14.4.2"
+drf-spectacular = "^0.27.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

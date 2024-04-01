@@ -1,0 +1,5 @@
+name: Door Lock
+description: Detects when a the door is locked or unlocked. 
+runtime:
+  kind: poetry 
+entrypoint: "poetry run python app/main.py"
